@@ -1,0 +1,19 @@
+<Project>
+    <PropertyGroup>
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+
+        <!--
+          发布版本：单一事实来源。
+          所有项目（含测试工程）都从这里继承，避免各 csproj 各写一份，
+          或用 SDK 默认的 1.0.0.0。改版本只改这一处，并同步 CHANGELOG.md。
+          AssemblyVersion 固定为 major.minor.0.0：补丁升级不破坏程序集绑定。
+        -->
+        <Version>0.0.1</Version>
+        <AssemblyVersion>0.0.1.0</AssemblyVersion>
+        <FileVersion>0.0.1.0</FileVersion>
+        <InformationalVersion>0.0.1</InformationalVersion>
+
+        <Product>IronST</Product>
+        <Copyright>Copyright (c) 2026 xxy365</Copyright>
+    </PropertyGroup>
+</Project>

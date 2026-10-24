@@ -1,0 +1,49 @@
+﻿<UserControl
+  x:Class="IronST.IDE.Views.Controls.PropertiesPanelControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d">
+  <Border
+    x:Name="PropertiesPanel"
+    d:Width="280"
+    Background="{DynamicResource MantleBrush}"
+    Visibility="{Binding ShowPropertiesPanel, Converter={StaticResource BoolToVis}}">
+    <DockPanel>
+      <Border
+        Padding="10,7"
+        Background="{DynamicResource MantleBrush}"
+        BorderBrush="{DynamicResource Surface0Brush}"
+        BorderThickness="0,0,0,1"
+        DockPanel.Dock="Top">
+        <TextBlock
+          FontSize="11"
+          FontWeight="SemiBold"
+          Foreground="{DynamicResource Subtext0Brush}"
+          Text="VARIABLE WATCH" />
+      </Border>
+      <DataGrid
+        BorderThickness="0"
+        CanUserAddRows="False"
+        CanUserDeleteRows="False"
+        IsReadOnly="True"
+        ItemsSource="{Binding WatchVariables}">
+        <DataGrid.Columns>
+          <DataGridTextColumn
+            Width="*"
+            Binding="{Binding Name}"
+            Header="Name" />
+          <DataGridTextColumn
+            Width="70"
+            Binding="{Binding TypeName}"
+            Header="Type" />
+          <DataGridTextColumn
+            Width="*"
+            Binding="{Binding Value}"
+            Header="Value" />
+        </DataGrid.Columns>
+      </DataGrid>
+    </DockPanel>
+  </Border>
+</UserControl>

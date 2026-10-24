@@ -1,0 +1,156 @@
+﻿<UserControl
+  x:Class="IronST.IDE.Views.Controls.BottomPanelControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d">
+  <TabControl
+    d:Height="240"
+    d:Width="500"
+    Style="{DynamicResource BottomTabControl}"
+    Visibility="{Binding ShowBottomPanel, Converter={StaticResource BoolToVis}}">
+    <TabItem Header="Output" Style="{DynamicResource BottomTabItem}">
+      <!-- 只读多行文本：整段文本来自 OutputDisplayText，不是逐条列表 -->
+      <TextBox
+        Padding="6"
+        Background="Transparent"
+        BorderThickness="0"
+        FontFamily="{DynamicResource CodeFont}"
+        FontSize="12"
+        HorizontalScrollBarVisibility="Disabled"
+        IsReadOnly="True"
+        ScrollViewer.VerticalScrollBarVisibility="Auto"
+        Text="{Binding OutputDisplayText, Mode=OneWay}"
+        TextChanged="OnOutputTextChanged"
+        TextWrapping="Wrap"
+        VerticalScrollBarVisibility="Auto"
+        ScrollViewer.ScrollChanged="OnOutputScrollChanged"
+        Loaded="OnOutputLoaded">
+        <TextBox.ContextMenu>
+          <ContextMenu>
+            <MenuItem
+              Command="{Binding ClearOutputCommand}"
+              Header="清空" />
+          </ContextMenu>
+        </TextBox.ContextMenu>
+      </TextBox>
+    </TabItem>
+
+    <TabItem Header="Error List" Style="{DynamicResource BottomTabItem}">
+      <DataGrid
+        BorderThickness="0"
+        CanUserAddRows="False"
+        CanUserDeleteRows="False"
+        IsReadOnly="True"
+        ItemsSource="{Binding Errors}">
+        <DataGrid.Columns>
+          <DataGridTemplateColumn Width="26" Header=" ">
+            <DataGridTemplateColumn.CellTemplate>
+              <DataTemplate>
+                <Ellipse
+                  Width="10"
+                  Height="10"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Fill="{Binding Severity, Converter={StaticResource SeverityToBrush}}" />
+              </DataTemplate>
+            </DataGridTemplateColumn.CellTemplate>
+          </DataGridTemplateColumn>
+          <DataGridTextColumn
+            Width="80"
+            Binding="{Binding Code}"
+            Header="Code" />
+          <DataGridTextColumn
+            Width="*"
+            Binding="{Binding Description}"
+            Header="Description" />
+          <DataGridTextColumn
+            Width="180"
+            Binding="{Binding FilePath}"
+            Header="File" />
+          <DataGridTextColumn
+            Width="60"
+            Binding="{Binding Line}"
+            Header="Line" />
+        </DataGrid.Columns>
+      </DataGrid>
+    </TabItem>
+
+    <TabItem Header="Call Stack" Style="{DynamicResource BottomTabItem}">
+      <DataGrid
+        BorderThickness="0"
+        CanUserAddRows="False"
+        CanUserDeleteRows="False"
+        IsReadOnly="True"
+        ItemsSource="{Binding CallStack}">
+        <DataGrid.Columns>
+          <DataGridTextColumn
+            Width="*"
+            Binding="{Binding MethodName}"
+            Header="Method" />
+          <DataGridTextColumn
+            Width="200"
+            Binding="{Binding FilePath}"
+            Header="File" />
+          <DataGridTextColumn
+            Width="60"
+            Binding="{Binding Line}"
+            Header="Line" />
+        </DataGrid.Columns>
+      </DataGrid>
+    </TabItem>
+
+    <TabItem Header="Breakpoints" Style="{DynamicResource BottomTabItem}">
+      <DataGrid
+        BorderThickness="0"
+        CanUserAddRows="False"
+        CanUserDeleteRows="False"
+        IsReadOnly="True"
+        ItemsSource="{Binding Breakpoints}">
+        <DataGrid.Columns>
+          <DataGridCheckBoxColumn
+            Width="30"
+            Binding="{Binding IsEnabled}"
+            Header=" " />
+          <DataGridTextColumn
+            Width="*"
+            Binding="{Binding FilePath}"
+            Header="File" />
+          <DataGridTextColumn
+            Width="60"
+            Binding="{Binding Line}"
+            Header="Line" />
+          <DataGridTextColumn
+            Width="150"
+            Binding="{Binding Condition}"
+            Header="Condition" />
+        </DataGrid.Columns>
+      </DataGrid>
+    </TabItem>
+
+    <TabItem Header="Watch" Style="{DynamicResource BottomTabItem}">
+      <DataGrid
+        BorderThickness="0"
+        CanUserAddRows="False"
+        CanUserDeleteRows="False"
+        IsReadOnly="True"
+        ItemsSource="{Binding WatchVariables}">
+        <DataGrid.Columns>
+          <DataGridTextColumn
+            Width="*"
+            Binding="{Binding Name}"
+            Header="Name" />
+          <DataGridTextColumn
+            Width="100"
+            Binding="{Binding TypeName}"
+            Header="Type" />
+          <DataGridTextColumn
+            Width="*"
+            Binding="{Binding Value}"
+            Header="Value" />
+        </DataGrid.Columns>
+      </DataGrid>
+    </TabItem>
+  </TabControl>
+</UserControl>

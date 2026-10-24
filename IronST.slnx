@@ -1,0 +1,41 @@
+<Solution>
+  <Folder Name="/Runtime/">
+    <Project Path="IronST.Runtime.ConsoleApp/IronST.Runtime.ConsoleApp.csproj" Id="1a0bd21b-4d7f-4973-b54b-a6e5d8c8a56f" />
+    <Project Path="IronST.Runtime.Debug/IronST.Runtime.Debug.csproj" Id="69c3725f-addf-4908-9eae-e6eed4bc689c" />
+    <Project Path="IronST.Runtime.Shared/IronST.Runtime.Shared.csproj" Id="958a0f6a-cb2e-4b2f-927c-2eb6ec0bdbc4" />
+    <Project Path="IronST.Runtime/IronST.Runtime.csproj" />
+  </Folder>
+  <Folder Name="/Samples/">
+    <File Path="Samples/debug-test.st" />
+    <File Path="Samples/demo.st" />
+    <File Path="Samples/loop-carry.st" />
+    <File Path="Samples/runtime-error-line.st" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="IronST.BytecodeGen.Tests/IronST.BytecodeGen.Tests.csproj" Id="58a7fe38-4fe5-48ef-a769-b6dc1f61992b" />
+    <Project Path="IronST.CLI.Tests/IronST.CLI.Tests.csproj" />
+    <Project Path="IronST.Common.Tests/IronST.Common.Tests.csproj" Id="2566d9cf-dca2-4834-837b-1d187f727115" />
+    <Project Path="IronST.Frontend.Tests/IronST.Frontend.Tests.csproj" Id="8ebc85e1-f46e-4136-a833-b6fbaae0939f" />
+    <Project Path="IronST.IDE.Tests/IronST.IDE.Tests.csproj" />
+    <Project Path="IronST.Integration.Tests/IronST.Integration.Tests.csproj" />
+    <Project Path="IronST.IRBuilder.Tests/IronST.IRBuilder.Tests.csproj" Id="3a9e544e-6293-4837-893d-85a0ad1c3595" />
+    <Project Path="IronST.LanguageServer.Tests/IronST.LanguageServer.Tests.csproj" />
+    <Project Path="IronST.LLVMCodeGen.Tests/IronST.LLVMCodeGen.Tests.csproj" Id="a8831e08-eb84-4ccb-ad1e-030ca5efa0a7" />
+    <Project Path="IronST.Runtime.Tests/IronST.Runtime.Tests.csproj" Id="c7f2e9a1-5b3d-4f8e-9c2a-7d1e5b0a4f6c" />
+  </Folder>
+  <Folder Name="/解决方案项/">
+    <File Path="Directory.Packages.props" />
+    <File Path="README.md" />
+    <File Path="项目分层.txt" />
+  </Folder>
+  <Project Path="IronST.BytecodeGen/IronST.BytecodeGen.csproj" Id="d2693894-975d-4e92-bcb4-32e4cfc63032" />
+  <Project Path="IronST.CLI/IronST.CLI.csproj" Id="37499d80-f17d-49d8-b404-a0238c0f18d1" />
+  <Project Path="IronST.Common/IronST.Common.csproj" Id="18b29bf2-5086-42e4-adce-07bab8942fa0" />
+  <Project Path="IronST.Frontend/IronST.Frontend.csproj" />
+  <Project Path="IronST.IDE/IronST.IDE.csproj" Id="05d7440d-65d4-451a-863d-bd8e941a167b" />
+  <Project Path="IronST.IRBuilder/IronST.IRBuilder.csproj" Id="64794eeb-8858-4476-8621-4d7507c72bdb" />
+  <Project Path="IronST.LanguageServer/IronST.LanguageServer.csproj" />
+  <Project Path="IronST.LLVMCodeGen/IronST.LLVMCodeGen.csproj" Id="e42eb27b-593e-4b2b-9220-dc2fc14d7ced" />
+  <Project Path="IronST.StEditor/IronST.StEditor.csproj" Id="0d59c3b2-69a3-4aaa-9d68-64ca92ec59e0" />
+  <Project Path="StEditor/StEditor.Demo.csproj" Id="4beef40c-ba1e-4476-ad8c-d336bdd0d200" />
+</Solution>

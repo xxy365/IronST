@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <!--  COLORS (Catppuccin Latte)  -->
+  <Color x:Key="CrustColor">#FFDCE0E8</Color>
+  <Color x:Key="MantleColor">#FFE6E9EF</Color>
+  <Color x:Key="BaseColor">#FFEFF1F5</Color>
+  <Color x:Key="Surface0Color">#FFCCD0DA</Color>
+  <Color x:Key="Surface1Color">#FFBCC0CC</Color>
+  <Color x:Key="Surface2Color">#FFACB0BE</Color>
+  <Color x:Key="Overlay0Color">#FF9CA0B0</Color>
+  <Color x:Key="Subtext0Color">#FF6C6F85</Color>
+  <Color x:Key="TextColor">#FF4C4F69</Color>
+  <Color x:Key="BlueColor">#FF1E66F5</Color>
+  <Color x:Key="GreenColor">#FF40A02B</Color>
+  <Color x:Key="RedColor">#FFD20F39</Color>
+  <Color x:Key="YellowColor">#FFDF8E1D</Color>
+
+  <!--  BRUSHES  -->
+  <SolidColorBrush x:Key="CrustBrush" Color="{StaticResource CrustColor}" />
+  <SolidColorBrush x:Key="MantleBrush" Color="{StaticResource MantleColor}" />
+  <SolidColorBrush x:Key="BaseBrush" Color="{StaticResource BaseColor}" />
+  <SolidColorBrush x:Key="Surface0Brush" Color="{StaticResource Surface0Color}" />
+  <SolidColorBrush x:Key="Surface1Brush" Color="{StaticResource Surface1Color}" />
+  <SolidColorBrush x:Key="Surface2Brush" Color="{StaticResource Surface2Color}" />
+  <SolidColorBrush x:Key="Overlay0Brush" Color="{StaticResource Overlay0Color}" />
+  <SolidColorBrush x:Key="Subtext0Brush" Color="{StaticResource Subtext0Color}" />
+  <SolidColorBrush x:Key="TextBrush" Color="{StaticResource TextColor}" />
+  <SolidColorBrush x:Key="BlueBrush" Color="{StaticResource BlueColor}" />
+  <SolidColorBrush x:Key="GreenBrush" Color="{StaticResource GreenColor}" />
+  <SolidColorBrush x:Key="RedBrush" Color="{StaticResource RedColor}" />
+  <SolidColorBrush x:Key="YellowBrush" Color="{StaticResource YellowColor}" />
+  <SolidColorBrush x:Key="HoverBrush" Color="#204C4F69" />
+  <SolidColorBrush x:Key="SelectBrush" Color="#304C4F69" />
+
+</ResourceDictionary>

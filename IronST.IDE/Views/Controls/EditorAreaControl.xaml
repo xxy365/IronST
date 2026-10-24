@@ -1,0 +1,55 @@
+﻿<UserControl
+  x:Class="IronST.IDE.Views.Controls.EditorAreaControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:editor="clr-namespace:IronST.StEditor;assembly=IronST.StEditor"
+  xmlns:models="clr-namespace:IronST.IDE.Models">
+  <Grid>
+    <TabControl
+      x:Name="EditorTabControl"
+      ItemsSource="{Binding EditorTabs}"
+      SelectedItem="{Binding SelectedEditor}"
+      Style="{StaticResource EditorTabControl}">
+      <TabControl.ItemTemplate>
+        <DataTemplate DataType="{x:Type models:EditorViewModel}">
+          <StackPanel Orientation="Horizontal">
+            <TextBlock
+              VerticalAlignment="Center"
+              FontSize="12"
+              Text="{Binding DisplayName}" />
+            <Button
+              Margin="8,0,-4,0"
+              VerticalAlignment="Center"
+              Command="{Binding DataContext.CloseTabCommand, RelativeSource={RelativeSource AncestorType=TabControl}}"
+              CommandParameter="{Binding}"
+              Style="{StaticResource TabCloseButton}" />
+          </StackPanel>
+        </DataTemplate>
+      </TabControl.ItemTemplate>
+      <TabControl.ContentTemplate>
+        <DataTemplate DataType="{x:Type models:EditorViewModel}">
+          <editor:StEditorControl
+            x:Name="stEditor"
+            BaseFontSize="14"
+            EditorTheme="{Binding EditorTheme}"
+            Loaded="StEditor_Loaded"
+            ShowLineNumbers="True"
+            Text="{Binding Code, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </DataTemplate>
+      </TabControl.ContentTemplate>
+    </TabControl>
+
+    <Border
+      Padding="10"
+      Background="Transparent"
+      IsHitTestVisible="False"
+      Visibility="{Binding EditorTabs.Count, Converter={StaticResource InvBoolToVis}}">
+      <TextBlock
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        FontSize="14"
+        Foreground="{StaticResource Overlay0Brush}"
+        Text="No files open    File &gt; Open    or    Ctrl+O" />
+    </Border>
+  </Grid>
+</UserControl>

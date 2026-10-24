@@ -1,0 +1,332 @@
+﻿<UserControl
+  x:Class="IronST.IDE.Views.Controls.ToolBarControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:viewmodels="clr-namespace:IronST.IDE.ViewModels">
+  <Border
+    Padding="6,4"
+    Background="{DynamicResource MantleBrush}"
+    BorderBrush="{DynamicResource Surface0Brush}"
+    BorderThickness="0,0,0,1">
+    <WrapPanel Orientation="Horizontal">
+
+      <!--  ===== File Operations =====  -->
+      <Button
+        Command="{Binding NewFileCommand}"
+        Style="{DynamicResource ToolBarButton}"
+        ToolTip="New File (Ctrl+N)">
+        <Path
+          Width="16"
+          Height="16"
+          Data="M3,1 L3,23 L17,23 L21,19 L21,5 Z M17,1 L17,6 L21,6"
+          Fill="Transparent"
+          Stretch="Uniform"
+          Stroke="{DynamicResource Subtext0Brush}"
+          StrokeEndLineCap="Round"
+          StrokeStartLineCap="Round"
+          StrokeThickness="1.5" />
+      </Button>
+      <Button
+        Command="{Binding OpenFileCommand}"
+        Style="{DynamicResource ToolBarButton}"
+        ToolTip="Open File (Ctrl+O)">
+        <Path
+          Width="16"
+          Height="16"
+          Data="M2,8 L10,8 L12,5 L21,5 L21,20 L2,20 Z"
+          Fill="Transparent"
+          Stretch="Uniform"
+          Stroke="{DynamicResource Subtext0Brush}"
+          StrokeEndLineCap="Round"
+          StrokeStartLineCap="Round"
+          StrokeThickness="1.5" />
+      </Button>
+      <Button
+        Command="{Binding SaveCommand}"
+        Style="{DynamicResource ToolBarButton}"
+        ToolTip="Save (Ctrl+S)">
+        <Path
+          Width="16"
+          Height="16"
+          Data="M19,21 L19,15 L5,15 L5,21 Z M3,3 L18,3 L21,7 L21,21 L3,21 Z M9,3 L9,9 L15,9"
+          Fill="Transparent"
+          Stretch="Uniform"
+          Stroke="{DynamicResource Subtext0Brush}"
+          StrokeEndLineCap="Round"
+          StrokeStartLineCap="Round"
+          StrokeThickness="1.5" />
+      </Button>
+      <Button
+        Command="{Binding SaveAllCommand}"
+        Style="{DynamicResource ToolBarButton}"
+        ToolTip="Save All (Ctrl+Shift+S)">
+        <Path
+          Width="16"
+          Height="16"
+          Data="M17,21 L17,13 L3,13 L3,21 Z M1,3 L16,3 L19,7 L19,21 M5,3 L5,9 L11,9"
+          Fill="Transparent"
+          Stretch="Uniform"
+          Stroke="{DynamicResource Subtext0Brush}"
+          StrokeEndLineCap="Round"
+          StrokeStartLineCap="Round"
+          StrokeThickness="1.5" />
+      </Button>
+
+      <Rectangle
+        Width="1"
+        Height="24"
+        Margin="8,0"
+        Fill="{DynamicResource Surface0Brush}" />
+
+      <!--  ===== Build Operations =====  -->
+
+      <!--  Build Solution — 叠放方块，VS 经典构建图标  -->
+      <Button
+        Command="{Binding BuildSolutionCommand}"
+        Style="{DynamicResource ToolBarButton}"
+        ToolTip="Build Solution (Ctrl+Shift+B)">
+        <Canvas Width="16" Height="16">
+          <Rectangle
+            Canvas.Left="1"
+            Canvas.Top="5"
+            Width="8"
+            Height="8"
+            Fill="Transparent"
+            Stroke="{DynamicResource YellowBrush}"
+            StrokeThickness="1.5" />
+          <Rectangle
+            Canvas.Left="7"
+            Canvas.Top="1"
+            Width="8"
+            Height="8"
+            Fill="Transparent"
+            Stroke="{DynamicResource YellowBrush}"
+            StrokeThickness="1.5" />
+        </Canvas>
+      </Button>
+
+      <!--  Build Current File — 文档 + 向下箭头  -->
+      <Button
+        Command="{Binding BuildCurrentFileCommand}"
+        Style="{DynamicResource ToolBarButton}"
+        ToolTip="Build Current File (Ctrl+B)">
+        <Canvas Width="16" Height="16">
+          <Path
+            Data="M3,1 L11,1 L14,4 L14,15 L3,15 Z"
+            Fill="Transparent"
+            Stroke="{DynamicResource YellowBrush}"
+            StrokeLineJoin="Round"
+            StrokeThickness="1.5" />
+          <Path
+            Data="M11,1 L11,4 L14,4"
+            Fill="Transparent"
+            Stroke="{DynamicResource YellowBrush}"
+            StrokeLineJoin="Round"
+            StrokeThickness="1.5" />
+          <Path
+            Data="M8,7 L8,12 M6,10 L8,12 L10,10"
+            Fill="Transparent"
+            Stroke="{DynamicResource YellowBrush}"
+            StrokeEndLineCap="Round"
+            StrokeLineJoin="Round"
+            StrokeStartLineCap="Round"
+            StrokeThickness="1.5" />
+        </Canvas>
+      </Button>
+
+      <!--  Rebuild Solution — 双向循环箭头  -->
+      <Button
+        Command="{Binding RebuildSolutionCommand}"
+        Style="{DynamicResource ToolBarButton}"
+        ToolTip="Rebuild Solution">
+        <Canvas Width="16" Height="16">
+          <Path
+            Data="M8,2 A6,6 0 0 1 14,8"
+            Fill="Transparent"
+            Stroke="{DynamicResource YellowBrush}"
+            StrokeEndLineCap="Round"
+            StrokeThickness="1.5" />
+          <Path
+            Data="M14,5 L14,8 L11,8"
+            Fill="Transparent"
+            Stroke="{DynamicResource YellowBrush}"
+            StrokeEndLineCap="Round"
+            StrokeStartLineCap="Round"
+            StrokeThickness="1.5" />
+          <Path
+            Data="M8,14 A6,6 0 0 1 2,8"
+            Fill="Transparent"
+            Stroke="{DynamicResource YellowBrush}"
+            StrokeEndLineCap="Round"
+            StrokeThickness="1.5" />
+          <Path
+            Data="M2,11 L2,8 L5,8"
+            Fill="Transparent"
+            Stroke="{DynamicResource YellowBrush}"
+            StrokeEndLineCap="Round"
+            StrokeStartLineCap="Round"
+            StrokeThickness="1.5" />
+        </Canvas>
+      </Button>
+
+      <!--  Clean Solution — 垃圾桶  -->
+      <Button
+        Command="{Binding CleanSolutionCommand}"
+        Style="{DynamicResource ToolBarButton}"
+        ToolTip="Clean Solution">
+        <Canvas Width="16" Height="16">
+          <Path
+            Data="M4,5 L5,15 L11,15 L12,5"
+            Fill="Transparent"
+            Stroke="{DynamicResource PeachBrush}"
+            StrokeLineJoin="Round"
+            StrokeThickness="1.5" />
+          <Line
+            Stroke="{DynamicResource PeachBrush}"
+            StrokeEndLineCap="Round"
+            StrokeThickness="1.5"
+            X1="3"
+            X2="13"
+            Y1="5"
+            Y2="5" />
+          <Path
+            Data="M6,5 L6,3 L10,3 L10,5"
+            Fill="Transparent"
+            Stroke="{DynamicResource PeachBrush}"
+            StrokeLineJoin="Round"
+            StrokeThickness="1.5" />
+        </Canvas>
+      </Button>
+
+      <Rectangle
+        Width="1"
+        Height="24"
+        Margin="8,0"
+        Fill="{DynamicResource Surface0Brush}" />
+
+      <!--  ===== Debug Execution =====  -->
+      <Button
+        Command="{Binding DebugToggleCommand}"
+        Style="{DynamicResource ToolBarButton}"
+        ToolTip="Start / Continue (F5)">
+        <Polygon Fill="{DynamicResource GreenBrush}" Points="4,2 4,14 14,8" />
+      </Button>
+      <Button
+        Command="{Binding RunWithoutDebugCommand}"
+        Style="{DynamicResource ToolBarButton}"
+        ToolTip="Run Without Debugging (Ctrl+F5)">
+        <StackPanel Orientation="Horizontal">
+          <Polygon
+            Margin="0,0,2,0"
+            Fill="{DynamicResource GreenBrush}"
+            Points="3,2 3,12 11,7" />
+          <Rectangle
+            Width="2"
+            Height="12"
+            Fill="{DynamicResource GreenBrush}" />
+        </StackPanel>
+      </Button>
+      <Button
+        Command="{Binding StopDebugCommand}"
+        Style="{DynamicResource ToolBarButton}"
+        ToolTip="Stop (Shift+F5)">
+        <Rectangle
+          Width="12"
+          Height="12"
+          Fill="{DynamicResource RedBrush}"
+          RadiusX="1"
+          RadiusY="1" />
+      </Button>
+
+      <Rectangle
+        Width="1"
+        Height="24"
+        Margin="8,0"
+        Fill="{DynamicResource Surface0Brush}" />
+
+      <!--  ===== Step Commands =====  -->
+      <Button
+        Command="{Binding StepIntoCommand}"
+        Style="{DynamicResource ToolBarButton}"
+        ToolTip="Step Into (F11)">
+        <Canvas Width="16" Height="16">
+          <Path
+            Data="M8,1 L8,12 M4,8 L8,13 L12,8"
+            Fill="Transparent"
+            Stroke="{DynamicResource BlueBrush}"
+            StrokeEndLineCap="Round"
+            StrokeStartLineCap="Round"
+            StrokeThickness="1.5" />
+          <Line
+            Stroke="{DynamicResource BlueBrush}"
+            StrokeThickness="1.5"
+            X1="3"
+            X2="13"
+            Y1="15"
+            Y2="15" />
+        </Canvas>
+      </Button>
+      <Button
+        Command="{Binding StepOverCommand}"
+        Style="{DynamicResource ToolBarButton}"
+        ToolTip="Step Over (F10)">
+        <Canvas Width="16" Height="16">
+          <Path
+            Data="M3,4 L10,4 L10,9 L14,6 M10,9 L10,13"
+            Fill="Transparent"
+            Stroke="{DynamicResource BlueBrush}"
+            StrokeEndLineCap="Round"
+            StrokeStartLineCap="Round"
+            StrokeThickness="1.5" />
+          <Line
+            Stroke="{DynamicResource BlueBrush}"
+            StrokeThickness="1.5"
+            X1="3"
+            X2="13"
+            Y1="15"
+            Y2="15" />
+        </Canvas>
+      </Button>
+      <Button
+        Command="{Binding StepOutCommand}"
+        Style="{DynamicResource ToolBarButton}"
+        ToolTip="Step Out (Shift+F11)">
+        <Canvas Width="16" Height="16">
+          <Path
+            Data="M8,15 L8,5 M4,9 L8,4 L12,9"
+            Fill="Transparent"
+            Stroke="{DynamicResource BlueBrush}"
+            StrokeEndLineCap="Round"
+            StrokeStartLineCap="Round"
+            StrokeThickness="1.5" />
+          <Line
+            Stroke="{DynamicResource BlueBrush}"
+            StrokeThickness="1.5"
+            X1="3"
+            X2="13"
+            Y1="1"
+            Y2="1" />
+        </Canvas>
+      </Button>
+
+      <Rectangle
+        Width="1"
+        Height="24"
+        Margin="8,0"
+        Fill="{DynamicResource Surface0Brush}" />
+
+      <!--  ===== Breakpoint =====  -->
+      <Button
+        Command="{Binding ToggleBreakpointCommand}"
+        Style="{DynamicResource ToolBarButton}"
+        ToolTip="Toggle Breakpoint (F9)">
+        <Ellipse
+          Width="12"
+          Height="12"
+          Fill="{DynamicResource RedBrush}" />
+      </Button>
+
+    </WrapPanel>
+  </Border>
+</UserControl>

@@ -1,0 +1,87 @@
+<UserControl
+  x:Class="IronST.IDE.Views.Controls.SolutionExplorerControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:models="clr-namespace:IronST.IDE.Models"
+  mc:Ignorable="d">
+  <Border
+    x:Name="SolutionExplorerPanel"
+    d:Width="260"
+    Background="{DynamicResource MantleBrush}"
+    Visibility="{Binding ShowSolutionExplorer, Converter={StaticResource BoolToVis}}">
+    <DockPanel>
+      <Border
+        Padding="10,7"
+        Background="{DynamicResource MantleBrush}"
+        BorderBrush="{DynamicResource Surface0Brush}"
+        BorderThickness="0,0,0,1"
+        DockPanel.Dock="Top">
+        <TextBlock
+          FontSize="11"
+          FontWeight="SemiBold"
+          Foreground="{DynamicResource Subtext0Brush}"
+          Text="SOLUTION EXPLORER" />
+      </Border>
+      <TreeView
+        PreviewMouseDoubleClick="TreeView_PreviewMouseDoubleClick"
+        Padding="4"
+        Background="Transparent"
+        BorderThickness="0"
+        ItemsSource="{Binding SolutionNodes}">
+        <TreeView.ItemContainerStyle>
+          <!-- 右键先选中节点再弹菜单（WPF 默认不选中），才能"看着哪个节点操作哪个" -->
+          <Style BasedOn="{StaticResource {x:Type TreeViewItem}}" TargetType="{x:Type TreeViewItem}">
+            <EventSetter
+              Event="PreviewMouseRightButtonDown"
+              Handler="TreeViewItem_PreviewMouseRightButtonDown" />
+          </Style>
+        </TreeView.ItemContainerStyle>
+        <TreeView.ContextMenu>
+          <!-- 未打开工程时整组禁用（HasProject 变化会刷新绑定）。
+               DataContext 取自 PlacementTarget：ContextMenu 在 Popup 里，
+               显式取父级 DataContext 比依赖隐式继承更稳。 -->
+          <ContextMenu DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+            <MenuItem
+              Command="{Binding AddNewItemCommand}"
+              Header="Add _New Item..."
+              InputGestureText="Ctrl+Shift+A"
+              IsEnabled="{Binding HasProject}" />
+            <MenuItem
+              Command="{Binding AddExistingItemCommand}"
+              Header="Add _Existing Item..."
+              InputGestureText="Shift+Alt+A"
+              IsEnabled="{Binding HasProject}" />
+            <Separator />
+            <MenuItem
+              Command="{Binding BuildProjectCommand}"
+              Header="_Build Project"
+              InputGestureText="Ctrl+Shift+B"
+              IsEnabled="{Binding HasProject}" />
+            <MenuItem
+              Command="{Binding RunProjectCommand}"
+              Header="_Run Project"
+              InputGestureText="Ctrl+F5"
+              IsEnabled="{Binding HasProject}" />
+          </ContextMenu>
+        </TreeView.ContextMenu>
+        <TreeView.ItemTemplate>
+          <HierarchicalDataTemplate DataType="{x:Type models:SolutionNode}" ItemsSource="{Binding Children}">
+            <StackPanel Margin="2,1" Orientation="Horizontal">
+              <TextBlock
+                Margin="0,0,6,0"
+                VerticalAlignment="Center"
+                FontSize="13"
+                Text="{Binding Icon}" />
+              <TextBlock
+                VerticalAlignment="Center"
+                FontSize="12"
+                Text="{Binding Name}" />
+            </StackPanel>
+          </HierarchicalDataTemplate>
+        </TreeView.ItemTemplate>
+      </TreeView>
+    </DockPanel>
+  </Border>
+</UserControl>

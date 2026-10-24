@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IronST.Common\IronST.Common.csproj" />
+    <ProjectReference Include="..\IronST.Frontend\IronST.Frontend.csproj" />
+    <ProjectReference Include="..\IronST.IRBuilder\IronST.IRBuilder.csproj" />
+  </ItemGroup>
+</Project>

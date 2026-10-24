@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <!--
+    允许 IronST.Opt 和测试项目访问 internal 类型。
+    如果你想把所有类型改为 public，可以不加这个。
+  -->
+  <ItemGroup>
+    <InternalsVisibleTo Include="IronST.IRBuilder.Tests" />
+  </ItemGroup>
+  <!--
+    集成 LLVM opt 二进制文件。
+    构建时将 tools/opt/{rid}/ 下已有的 opt 复制到输出目录。
+    只复制存在的文件，不存在时不报错。
+  -->
+  <ItemGroup>
+    <Content Include="tools\opt\win-x64\opt.exe" Condition="Exists('tools\opt\win-x64\opt.exe')">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>tools\opt\win-x64\opt.exe</Link>
+    </Content>
+    <Content Include="tools\opt\linux-x64\opt" Condition="Exists('tools\opt\linux-x64\opt')">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>tools\opt\linux-x64\opt</Link>
+    </Content>
+    <Content Include="tools\opt\linux-arm64\opt" Condition="Exists('tools\opt\linux-arm64\opt')">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>tools\opt\linux-arm64\opt</Link>
+    </Content>
+    <Content Include="tools\opt\osx-arm64\opt" Condition="Exists('tools\opt\osx-arm64\opt')">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>tools\opt\osx-arm64\opt</Link>
+    </Content>
+    <Content Include="tools\opt\osx-x64\opt" Condition="Exists('tools\opt\osx-x64\opt')">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>tools\opt\osx-x64\opt</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="tools\opt\win-x64\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="tools\opt\win-x64\opt.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,103 @@
+name: CI
+
+# 为什么有两个 job：
+#   Windows  -> 全量解决方案（含 WPF 的 IDE / StEditor / Demo）
+#   Linux    -> 只构建跨平台工程（WPF 项目是 net10.0-windows，Linux 上不可构建）
+# 两个 job 都必须是绿的才算通过；分支保护里的必需检查见 docs/生产发布检查表.md（D1）。
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DOTNET_NOLOGO: 'true'
+  DOTNET_CLI_TELEMETRY_OPTOUT: 'true'
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 'true'
+
+jobs:
+  build-test:
+    name: build-test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            full: 'true'
+          - os: ubuntu-latest
+            full: 'false'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # global.json 固定 10.0.402 + rollForward=latestFeature；
+      # 这里装 10.0.x，由 SDK resolver 按 global.json 选择具体补丁版本。
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Show SDK
+        shell: bash
+        run: dotnet --version
+
+      # ── Windows：全量 ─────────────────────────────────────────────
+      - name: Restore (solution)
+        if: matrix.full == 'true'
+        shell: bash
+        run: dotnet restore IronST.slnx
+
+      - name: Build (solution)
+        if: matrix.full == 'true'
+        shell: bash
+        run: dotnet build IronST.slnx -c Release --no-restore
+
+      - name: Test (solution)
+        if: matrix.full == 'true'
+        shell: bash
+        run: >
+          dotnet test IronST.slnx -c Release --no-build
+          --logger "trx;LogFileName=windows.trx"
+          --results-directory TestResults
+
+      # ── Linux：只跑跨平台工程 ──────────────────────────────────────
+      # 清单必须与 IronST.slnx 里“不含 net10.0-windows”的测试工程保持一致；
+      # 新增跨平台测试工程时要同步这里（E4 跨平台一致性会覆盖这一点）。
+      - name: Build + test (portable projects)
+        if: matrix.full == 'false'
+        shell: bash
+        run: |
+          set -euo pipefail
+          projects=(
+            IronST.Common.Tests/IronST.Common.Tests.csproj
+            IronST.IRBuilder.Tests/IronST.IRBuilder.Tests.csproj
+            IronST.Frontend.Tests/IronST.Frontend.Tests.csproj
+            IronST.LLVMCodeGen.Tests/IronST.LLVMCodeGen.Tests.csproj
+            IronST.BytecodeGen.Tests/IronST.BytecodeGen.Tests.csproj
+            IronST.Runtime.Tests/IronST.Runtime.Tests.csproj
+            IronST.Integration.Tests/IronST.Integration.Tests.csproj
+            IronST.CLI.Tests/IronST.CLI.Tests.csproj
+            IronST.LanguageServer.Tests/IronST.LanguageServer.Tests.csproj
+          )
+          for p in "${projects[@]}"; do
+            echo "::group::$p"
+            dotnet test "$p" -c Release \
+              --logger "trx;LogFileName=$(basename "$p" .csproj).trx" \
+              --results-directory TestResults
+            echo "::endgroup::"
+          done
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.os }}
+          path: TestResults/**/*.trx
+          if-no-files-found: warn
+          retention-days: 14

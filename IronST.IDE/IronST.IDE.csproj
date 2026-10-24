@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AvalonEdit" />
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IronST.BytecodeGen\IronST.BytecodeGen.csproj" />
+    <ProjectReference Include="..\IronST.CLI\IronST.CLI.csproj" />
+    <ProjectReference Include="..\IronST.Frontend\IronST.Frontend.csproj" />
+    <ProjectReference Include="..\IronST.LLVMCodeGen\IronST.LLVMCodeGen.csproj" />
+    <ProjectReference Include="..\IronST.Runtime.Debug\IronST.Runtime.Debug.csproj" />
+    <ProjectReference Include="..\IronST.Runtime\IronST.Runtime.csproj" />
+    <ProjectReference Include="..\IronST.StEditor\IronST.StEditor.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+</Project>

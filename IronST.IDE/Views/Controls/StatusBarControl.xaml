@@ -1,0 +1,21 @@
+﻿<UserControl
+  x:Class="IronST.IDE.Views.Controls.StatusBarControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <StatusBar BorderBrush="{DynamicResource Surface0Brush}" BorderThickness="0,1,0,0">
+    <StatusBarItem>
+      <TextBlock FontSize="12" Text="{Binding StatusText}" />
+    </StatusBarItem>
+    <Separator />
+    <StatusBarItem>
+      <TextBlock
+        FontSize="12"
+        Foreground="{Binding DebugStatusColor}"
+        Text="{Binding DebugStatus}" />
+    </StatusBarItem>
+    <Separator />
+    <StatusBarItem HorizontalAlignment="Right">
+      <TextBlock FontSize="12" Text="{Binding CursorPosition}" />
+    </StatusBarItem>
+  </StatusBar>
+</UserControl>
