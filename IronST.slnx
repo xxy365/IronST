@@ -12,16 +12,16 @@
     <File Path="Samples/runtime-error-line.st" />
   </Folder>
   <Folder Name="/Tests/">
-    <Project Path="IronST.BytecodeGen.Tests/IronST.BytecodeGen.Tests.csproj" Id="58a7fe38-4fe5-48ef-a769-b6dc1f61992b" />
-    <Project Path="IronST.CLI.Tests/IronST.CLI.Tests.csproj" />
-    <Project Path="IronST.Common.Tests/IronST.Common.Tests.csproj" Id="2566d9cf-dca2-4834-837b-1d187f727115" />
-    <Project Path="IronST.Frontend.Tests/IronST.Frontend.Tests.csproj" Id="8ebc85e1-f46e-4136-a833-b6fbaae0939f" />
-    <Project Path="IronST.IDE.Tests/IronST.IDE.Tests.csproj" />
-    <Project Path="IronST.Integration.Tests/IronST.Integration.Tests.csproj" />
-    <Project Path="IronST.IRBuilder.Tests/IronST.IRBuilder.Tests.csproj" Id="3a9e544e-6293-4837-893d-85a0ad1c3595" />
-    <Project Path="IronST.LanguageServer.Tests/IronST.LanguageServer.Tests.csproj" />
-    <Project Path="IronST.LLVMCodeGen.Tests/IronST.LLVMCodeGen.Tests.csproj" Id="a8831e08-eb84-4ccb-ad1e-030ca5efa0a7" />
-    <Project Path="IronST.Runtime.Tests/IronST.Runtime.Tests.csproj" Id="c7f2e9a1-5b3d-4f8e-9c2a-7d1e5b0a4f6c" />
+    <Project Path="Tests/IronST.BytecodeGen.Tests/IronST.BytecodeGen.Tests.csproj" Id="58a7fe38-4fe5-48ef-a769-b6dc1f61992b" />
+    <Project Path="Tests/IronST.CLI.Tests/IronST.CLI.Tests.csproj" />
+    <Project Path="Tests/IronST.Common.Tests/IronST.Common.Tests.csproj" Id="2566d9cf-dca2-4834-837b-1d187f727115" />
+    <Project Path="Tests/IronST.Frontend.Tests/IronST.Frontend.Tests.csproj" Id="8ebc85e1-f46e-4136-a833-b6fbaae0939f" />
+    <Project Path="Tests/IronST.IDE.Tests/IronST.IDE.Tests.csproj" />
+    <Project Path="Tests/IronST.Integration.Tests/IronST.Integration.Tests.csproj" />
+    <Project Path="Tests/IronST.IRBuilder.Tests/IronST.IRBuilder.Tests.csproj" Id="3a9e544e-6293-4837-893d-85a0ad1c3595" />
+    <Project Path="Tests/IronST.LanguageServer.Tests/IronST.LanguageServer.Tests.csproj" />
+    <Project Path="Tests/IronST.LLVMCodeGen.Tests/IronST.LLVMCodeGen.Tests.csproj" Id="a8831e08-eb84-4ccb-ad1e-030ca5efa0a7" />
+    <Project Path="Tests/IronST.Runtime.Tests/IronST.Runtime.Tests.csproj" Id="c7f2e9a1-5b3d-4f8e-9c2a-7d1e5b0a4f6c" />
   </Folder>
   <Folder Name="/解决方案项/">
     <File Path="Directory.Packages.props" />
